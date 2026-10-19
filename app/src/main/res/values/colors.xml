@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#41D3BD</color>
+    <color name="colorPrimaryDark">#41D3BD</color>
+    <color name="colorAccent">#FDA14F</color>
+    <color name="colorTextIcons">#FFFFFFFF</color>
+    <color name="colorTextPrimary">#212121</color>
+    <color name="colorTextSecondary">#757575</color>
+    <color name="colorRatingActive">#FDA14F</color>
+    <color name="colorRatingInactive">#C9C9D1</color>
+    <color name="colorBackground">#EEEEEE</color>
+
+    <color name="colorAccentLight">#FFE3C7</color>
+    <color name="colorAccentSoft">#FFF1E3</color>
+    <color name="colorAccentDark">#C46A12</color>
+    <color name="colorDivider">#E0E0E0</color>
+
+    <color name="colorBadge">#E24B4A</color>
+
+</resources>

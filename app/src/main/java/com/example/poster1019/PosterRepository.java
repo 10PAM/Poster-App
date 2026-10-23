@@ -128,36 +128,45 @@ public class PosterRepository {
         movie_1.image = R.drawable.poster1;
         movie_1.name = "The Light Switch";
         movie_1.rating = 5f;
-        movie_1.createdBy = "Rick Sanchez";
+        movie_1.createdBy = "Mario Aguilera Piceno";
         movie_1.story = "A horror film about finding paths.";
         posters.add(movie_1);
 
-        Posters chineseMovie = new Posters();
-        chineseMovie.id = "chinese";
-        chineseMovie.image = R.drawable.poster2;
-        chineseMovie.name = "Chinese Movie";
-        chineseMovie.rating = 4f;
-        chineseMovie.createdBy = "Zhang San";
-        chineseMovie.story = "This is an Chinese Movie with a young lady.";
-        posters.add(chineseMovie);
+        Posters movie_2 = new Posters();
+        movie_2.id = "knock";
+        movie_2.image = R.drawable.poster2;
+        movie_2.name = "Don't knock";
+        movie_2.rating = 1f;
+        movie_2.createdBy = "Rick Sanchez";
+        movie_2.story = "Don't Knock. Watch your next knock.";
+        posters.add(movie_2);
 
-        Posters japanMovie = new Posters();
-        japanMovie.id = "japanese";
-        japanMovie.image = R.drawable.poster3;
-        japanMovie.name = "Japanese Movie";
-        japanMovie.rating = 3f;
-        japanMovie.createdBy = "Juzo Itami";
-        japanMovie.story = "This is an Japanese Movie.";
-        posters.add(japanMovie);
+        Posters movie_3 = new Posters();
+        movie_3.id = "seeyou";
+        movie_3.image = R.drawable.poster3;
+        movie_3.name = "See You";
+        movie_3.rating = 2f;
+        movie_3.createdBy = "Mortimer Chauncey";
+        movie_3.story = "An inspiring short film about finding yourself.";
+        posters.add(movie_3);
 
-        Posters americanMovie = new Posters();
-        americanMovie.id = "american";
-        americanMovie.image = R.drawable.poster4;
-        americanMovie.name = "American Movie";
-        americanMovie.rating = 5f;
-        americanMovie.createdBy = "Tim Burton";
-        americanMovie.story = "This is an American Movie.";
-        posters.add(americanMovie);
+        Posters movie_4 = new Posters();
+        movie_4.id = "night";
+        movie_4.image = R.drawable.poster4;
+        movie_4.name = "The Night";
+        movie_4.rating = 4f;
+        movie_4.createdBy = "Squanchy";
+        movie_4.story = "A thrilling passionate journey.";
+        posters.add(movie_4);
+
+        Posters movie_5 = new Posters();
+        movie_5.id = "night";
+        movie_5.image = R.drawable.poster5;
+        movie_5.name = "The Night";
+        movie_5.rating = 3f;
+        movie_5.createdBy = "Mortaniel";
+        movie_5.story = "A thrilling passionate journey.";
+        posters.add(movie_5);
 
         return posters;
 

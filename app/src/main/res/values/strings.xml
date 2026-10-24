@@ -34,7 +34,7 @@
     <string name="remove_favorite">Remove from favorites</string>
     <string name="more">More</string>
     <string name="image_of_movie">Image of movie</string>
-    <string name="more_desc">A still image of one of my favorite movies. It is a scene were Brian comes saves Dom.</string>
+    <string name="more_desc">A still image of one of my favorite movies: The Fast and the Furious. It is a scene were Brian saves Dom.</string>
     <string name="about_me">About Me</string>
 
 </resources>

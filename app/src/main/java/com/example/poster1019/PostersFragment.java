@@ -1,29 +1,53 @@
+/**
+ * Programmers {
+ *  Mario Aguilera Piceno
+ * }
+ * Course: CS 460 - Software Engineering for Mobile Devices
+ * Original Implementation: Professor Shangyue Zhu
+ * Honor Code: I pledge that this work (aside from Professor Zhu's base implementation, is my work and that I have not received nor given help to anyone else.
+ * Date: 10/19/2026
+ * Modified: 10/24/2026
+ * File: PostersFragment.java
+ * About: Handles the Poster fragment for functionality.
+ */
+
+// Package declaration
 package com.example.poster1019;
 
-import android.app.Activity;
+// Required imports
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles Poster fragment for functionality of Poster.
+ */
 public class PostersFragment extends Fragment implements posterListener {
 
     private Button buttonAddtoWatchList;
 
     private PosterRepository posterRepository;
 
+    /**
+     * Constructor. Calls parent constructor with fragment page.
+     */
     public PostersFragment(){
         super(R.layout.fragment_posters);
     }
 
+    /**
+     * Handles the initialization of the View.
+     *
+     * @param view The View returned by the OnViewCreate method.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -37,7 +61,7 @@ public class PostersFragment extends Fragment implements posterListener {
 
         //connect the list to its adapter
         final PostersAdapter postersAdapter = new PostersAdapter(posters, this);
-//        final PostersAdapter postersAdapter = new PostersAdapter(posters, (posterListener) this);
+
         posterRecyclerView.setAdapter(postersAdapter);
 
         //selections live in the repository and survive rotation, so button show up again
@@ -66,6 +90,11 @@ public class PostersFragment extends Fragment implements posterListener {
         });
     }
 
+    /**
+     * Handles Poster clicking actions.
+     *
+     * @param isSelected Determines if Poster is selected or not.
+     */
     @Override
     public void OnPosterAction(Boolean isSelected) {
         if(isSelected){

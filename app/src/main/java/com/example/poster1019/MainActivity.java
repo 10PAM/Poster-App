@@ -1,10 +1,22 @@
+/**
+ * Programmers {
+ *  Mario Aguilera Piceno
+ * }
+ * Course: CS 460 - Software Engineering for Mobile Devices
+ * Original Implementation: Professor Shangyue Zhu
+ * Honor Code: I pledge that this work (aside from Professor Zhu's base implementation, is my work and that I have not received nor given help to anyone else.
+ * Date: 10/19/2026
+ * Modified: 10/24/2026
+ * File: MainActivity.java
+ * About: Create
+ */
+
+// Package declaration
 package com.example.poster1019;
 
+// Required imports
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,17 +30,15 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Main Class
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String KEY_CURRENT_PAGE = "current_page";
@@ -49,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
     private PosterRepository posterRepository;
     private final PosterRepository.FavoritesListener favoritesBadgeListener = this::updateFavoritesBadge;
 
+    /**
+     * Updates the favorites amount display.
+     */
     private void updateFavoritesBadge() {
 
         int count = posterRepository.getFavoriteCount();
@@ -59,7 +72,13 @@ public class MainActivity extends AppCompatActivity {
         badge.setVisible(count > 0);
     }
 
-
+    /**
+     * App creation entry point.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Adds all pages to FragmentManager: main, favorites, contact, and more.
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragmentContainer, new PostersFragment(), TAG_PAGE_MAIN)
@@ -122,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             currentPageId = savedInstanceState.getInt(KEY_CURRENT_PAGE, R.id.nav_main);
         }
+
+        // Shows the current page
         showPage(currentPageId);
 
         //Favorites badge: show the current count now, then follow every change.
@@ -130,19 +152,31 @@ public class MainActivity extends AppCompatActivity {
         updateFavoritesBadge();
     }
 
+    /**
+     * Removes active listener for memory safety.
+     */
     @Override
     protected void onDestroy() {
         posterRepository.removeFavoritesListener(favoritesBadgeListener);
         super.onDestroy();
     }
 
-    //Remember the current page, so a rotation doesn't jump back to the Main Page.
+    /**
+     * Remember the current page, so a rotation doesn't jump back to the Main Page.
+     *
+     * @param outState Bundle in which to place your saved state.
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(KEY_CURRENT_PAGE, currentPageId);
     }
 
+    /**
+     * Shows a page depending on the page id.
+     *
+     * @param pageId the TAG of the page being displayed.
+     */
     private void showPage(int pageId) {
         currentPageId = pageId;
 
@@ -175,7 +209,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //Toolbar title for each page.
+    /**
+     * Toolbar title for each page.
+     *
+     * @param pageId the TAG of the page being altered.
+     * @return Returns the string representation of the page title.
+     */
     private int titleForPage(int pageId) {
         if (pageId == R.id.nav_favorites) {
             return R.string.title_favorites;
@@ -187,7 +226,12 @@ public class MainActivity extends AppCompatActivity {
         return R.string.posters;
     }
 
-    //Which Fragment tag belongs to a page.
+    /**
+     * Which Fragment tag belongs to a page.
+     *
+     * @param pageId the id of the TAG being looked for.
+     * @return Returns the tag of the page being looked for.
+     */
     private String tagForPage(int pageId) {
         if (pageId == R.id.nav_favorites) {
             return TAG_PAGE_FAVORITES;

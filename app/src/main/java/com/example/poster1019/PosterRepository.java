@@ -1,7 +1,21 @@
+/**
+ * Programmers {
+ *  Mario Aguilera Piceno
+ * }
+ * Course: CS 460 - Software Engineering for Mobile Devices
+ * Original Implementation: Professor Shangyue Zhu
+ * Honor Code: I pledge that this work (aside from Professor Zhu's base implementation, is my work and that I have not received nor given help to anyone else.
+ * Date: 10/19/2026
+ * Modified: 10/24/2026
+ * File: PosterRepository.java
+ * About: Handles the Poster data.
+ */
+
+// Package declaration
 package com.example.poster1019;
 
+// Required imports
 import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -25,7 +25,9 @@ import java.util.List;
  */
 public class PosterRepository {
 
-    // Notified whenever favorites are added or removed (Favorite List, badge).
+    /**
+     * Notified whenever favorites are added or removed (Favorite List, badge).
+     */
     public interface FavoritesListener{
         void onFavoritesChanged();
     }
@@ -36,8 +38,13 @@ public class PosterRepository {
     private final FavoritesStore favoritesStore;
     private final List<FavoritesListener> favoritesListeners = new ArrayList<>();
 
-    // Creates the single instance on first use. It keeps the application context,
-    // never an Activity: holding an Activity in a singleton would leak it.
+    /**
+     *  Creates the single instance on first use. It keeps the application context,
+     *  never an Activity: holding an Activity in a singleton would leak it.
+     *
+     * @param context the Context provided.
+     * @return Returns the PosterRepository instance if available.
+     */
     public static synchronized PosterRepository getInstance(Context context) {
         if (instance == null) {
             instance = new PosterRepository(context.getApplicationContext());
@@ -45,6 +52,11 @@ public class PosterRepository {
         return instance;
     }
 
+    /**
+     * Constructor. Handles creation of AppContext.
+     *
+     * @param appContext The AppContext provided from the MainActivity.
+     */
     private PosterRepository(Context appContext) {
         allPosters = Collections.unmodifiableList(createPosters());
         favoritesStore = new FavoritesStore(appContext);
@@ -57,10 +69,21 @@ public class PosterRepository {
         favoritesStore.retainOnly(validIds);
     }
 
+    /**
+     * Gets a list of all Posters.
+     *
+     * @return Returns the list of all current Posters.
+     */
     public List<Posters> getAllPosters(){
         return allPosters;
     }
 
+    /**
+     * Finds Poster by provided id.
+     *
+     * @param id the Poster being looked for.
+     * @return Returns the Poster if found; Returns null if not found.
+     */
     public Posters findById(String id){
         for(Posters posters:allPosters){
             if(posters.id.equals(id)){
@@ -70,14 +93,20 @@ public class PosterRepository {
         return null;
     }
 
-    // deselects every poster
+    /**
+     * Deselects every poster
+     */
     public void clearSelection(){
         for(Posters poster : allPosters){
             poster.isSelected = false;
         }
     }
 
-    //get favorite posters, in the order they were added
+    /**
+     * get favorite posters, in the order they were added
+     *
+     * @return Returns the list of favorited Posters.
+     */
     public List<Posters> getFavorites(){
         List<Posters> favorites = new ArrayList<>();
         for (String id : favoritesStore.getIds()) {
@@ -89,12 +118,21 @@ public class PosterRepository {
         return favorites;
     }
 
+    /**
+     * Gets a total amount of favorited Posters.
+     *
+     * @return Returns the total amount of favorited Posters.
+     */
     public int getFavoriteCount(){
         return favoritesStore.getIds().size();
     }
 
-    // Adds posters to favorites, skipping ones already there.
-    // Returns how many were new, so the page can show the right message.
+    /**
+     * Adds posters to favorites, skipping ones already there.
+     *
+     * @param posters The Posters list.
+     * @return how many were new, so the page can show the right message.
+     */
     public int addFavorites(List<Posters> posters) {
         List<String> ids = new ArrayList<>();
         for (Posters poster : posters) {
@@ -107,7 +145,12 @@ public class PosterRepository {
         return added;
     }
 
-    // Removes one favorite. Returns true if it was a favorite.
+    /**
+     * Removes one favorite. Returns
+     *
+     * @param id The id of the Poster being unfavorited.
+     * @return Returns true if it was a favorite.
+     */
     public boolean removeFavorite(String id) {
         boolean removed = favoritesStore.remove(id);
         if (removed) {
@@ -116,24 +159,41 @@ public class PosterRepository {
         return removed;
     }
 
-    // The listener (observer) pattern: pages register to hear about changes.
-    // Whoever adds a listener must remove it again (onDestroyView / onDestroy).
+    /**
+     * The listener (observer) pattern: pages register to hear about changes.
+     * Whoever adds a listener must remove it again (onDestroyView / onDestroy).
+     *
+     * @param listener The Favorites Listener being added.
+     */
     public void addFavoritesListener(FavoritesListener listener) {
         if (!favoritesListeners.contains(listener)) {
             favoritesListeners.add(listener);
         }
     }
 
+    /**
+     * Removes Favorites Listener.
+     *
+     * @param listener THe listener being removed.
+     */
     public void removeFavoritesListener(FavoritesListener listener) {
         favoritesListeners.remove(listener);
     }
 
+    /**
+     * Event for favorites when changed.
+     */
     private void notifyFavoritesChanged() {
         for(FavoritesListener listener : new ArrayList<>(favoritesListeners)){
             listener.onFavoritesChanged();
         }
     }
 
+    /**
+     * Handles poster creation.
+     *
+     * @return Returns the list of created Posters.
+     */
     private static List<Posters> createPosters() {
         List<Posters> posters = new ArrayList<>();
 
@@ -185,6 +245,4 @@ public class PosterRepository {
         return posters;
 
     }
-
-
 }

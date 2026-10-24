@@ -29,6 +29,13 @@ public class MoreFragment extends Fragment {
         super(R.layout.fragment_more);
     }
 
+    /**
+     * View creation initialization.
+     *
+     * @param view The View returned by the Parent Fragment.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

@@ -242,6 +242,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return TAG_PAGE_MAIN;
     }
-
-
 }
